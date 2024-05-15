@@ -1,47 +1,35 @@
 version: 2.1
-
-executors:
-  terraform-executor:
-    docker:
-      - image: hashicorp/terraform:latest
-
+orbs:
+  tfsec: mycodeself/tfsec@1.1.0
+  go: circleci/go@1.7.3
 jobs:
-  tfsec:
+  pre-test:
+    resource_class: ewsaxyfkcp5g9tbybh5unx/test
+    executor: tfsec/default
+    steps:
+      - checkout
+      - tfsec/scan:
+          directory: ./infrastructure
+  post-test:
+    resource_class: ewsaxyfkcp5g9tbybh5unx/test
+    executor:
+      name: go/default
+      tag: '1.19.2'
     docker:
-      - image: aquasec/tfsec
+      - image: gruntwork/terragrunt
     steps:
       - checkout
       - run:
-          name: Run tfsec
-          command: tfsec .
-
-  apply_terraform:
-    docker:
-      - image: hashicorp/terraform:latest
-    steps:
-      - checkout
-      - run:
-          name: Apply Terraform
+          name: terratest
           command: |
-            terraform init
-            terraform apply -auto-approve
-
-  infrastructure_tests:
-    docker:
-      - image: golang:latest
-    steps:
-      - checkout
-      - run:
-          name: Run Infrastructure Tests
-          command: go test -v ./terratest/test
+             cd terratest/test \
+              && go mod init github.com/phosphor-v/webserver-ec2-module-terraform \
+              && go mod tidy \
+              && go test -v
 
 workflows:
   version: 2
-  test_and_deploy:
+  test-deployment:
     jobs:
-      - tfsec
-      - apply_terraform
-      - infrastructure_tests
-
-
-
+      - pre-test
+      - post-test
