@@ -1,0 +1,13 @@
+apiVersion: tf.weave.works/v1alpha1
+kind: Terraform
+metadata:
+  name: tf-app
+  namespace: flux-system
+spec:
+  path: ./infrastructure
+  secretRef:
+    name: aws-credentials
+  backendConfig:
+    bucket: phosphor-tfstate
+    key: /week10/terraform.tfstate
+    region: us-east-1

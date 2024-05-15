@@ -1,0 +1,47 @@
+version: 2.1
+
+executors:
+  terraform-executor:
+    docker:
+      - image: hashicorp/terraform:latest
+
+jobs:
+  tfsec:
+    docker:
+      - image: aquasec/tfsec
+    steps:
+      - checkout
+      - run:
+          name: Run tfsec
+          command: tfsec .
+
+  apply_terraform:
+    docker:
+      - image: hashicorp/terraform:latest
+    steps:
+      - checkout
+      - run:
+          name: Apply Terraform
+          command: |
+            terraform init
+            terraform apply -auto-approve
+
+  infrastructure_tests:
+    docker:
+      - image: golang:latest
+    steps:
+      - checkout
+      - run:
+          name: Run Infrastructure Tests
+          command: go test -v ./terratest/test
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - tfsec
+      - apply_terraform
+      - infrastructure_tests
+
+
+
