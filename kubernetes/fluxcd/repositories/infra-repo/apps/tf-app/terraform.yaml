@@ -10,11 +10,8 @@ spec:
     kind: GitRepository
     name: tf-app
   approvePlan: auto
-  backendConfig:
-    customConfiguration: |
-      backend "s3" {
-        bucket         = "phosphor-tfstate"
-        key            = "week10/terraform.tfstate"
-        region         = "us-east-1"
-        encrypt        = true
-      }
+  runnerPodTemplate:
+    spec:
+      envFrom:
+        - secretRef:
+            name: aws-credentials
