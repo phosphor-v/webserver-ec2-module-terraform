@@ -1,5 +1,7 @@
 terraform {
-  source = "git::https://github.com/phosphor-v/webserver-ec2-module-terraform.git//infrastructure"
+  source = "../../../infrastructure"
 }
 
-
+inputs = {
+  public_key_name = "terratest"
+}
