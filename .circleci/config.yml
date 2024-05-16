@@ -21,7 +21,7 @@ jobs:
       - run:
           name: terratest
           command: |
-            go test ./terratest/test/main.go
+            go test -v ./terratest/test
 
 workflows:
   version: 2
