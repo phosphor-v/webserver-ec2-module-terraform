@@ -16,7 +16,7 @@ jobs:
       name: go/default
       tag: '1.19.2'
     docker:
-      - image: gruntwork/terragrunt
+      - image: hashicorp/terraform:full
     steps:
       - checkout
       - run:

@@ -14,8 +14,8 @@ func TestTerraformModule(t *testing.T) {
         TerraformBinary : "terragrunt",
     }
 
-    defer terragrunt.Destroy(t, opts)
-    terragrunt.InitAndApply(t, opts)
+    defer terraform.Destroy(t, opts)
+    terraform.InitAndApply(t, opts)
     httpInstances := terraform.OutputList(t, opts, "http_ip")
 	dbInstances := terraform.OutputList(t, opts, "db_ip")
 
