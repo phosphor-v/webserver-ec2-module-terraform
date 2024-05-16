@@ -1,4 +1,7 @@
 version: 2.1
+orbs:
+  tfsec: mycodeself/tfsec@1.1.0
+  go: circleci/go@1.7.3
 jobs:
   pre-test:
     resource_class: ewsaxyfkcp5g9tbybh5unx/k8stest
@@ -22,7 +25,7 @@ jobs:
 
 workflows:
   version: 2
-  plan_approve_apply:
+  test-deployment:
     jobs:
       - pre-test
       - post-test:
