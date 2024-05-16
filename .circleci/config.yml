@@ -22,7 +22,7 @@ jobs:
       - run:
           name: terratest
           command: |
-             cd terratest/test \
+             cd terratest \
               && go mod init github.com/phosphor-v/webserver-ec2-module-terraform \
               && go mod tidy \
               && go test -v
