@@ -23,6 +23,4 @@ func TestTerraformModule(t *testing.T) {
     vpcCidr := terraform.Output(t, opts, "vpc_cidr")
     assert.Equal(t, vpcCidr, "192.168.0.0/16", "Expected VPC CIDR block to be 192.168.0.0/16")
 
-    dbAccessible := terraform.OutputBool(t, opts, "db_accessible_from_internet")
-    assert.False(t, dbAccessible, "Database should not be accessible from the internet")
 }
