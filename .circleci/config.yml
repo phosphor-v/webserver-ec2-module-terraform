@@ -18,6 +18,8 @@ jobs:
     docker:
       - image: ivanopulo/terratest:0.0.4
     steps:
+      - attach_workspace:
+          at: .
       - run:
           name: terratest
           command: |
