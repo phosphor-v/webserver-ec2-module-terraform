@@ -4,14 +4,14 @@ orbs:
   go: circleci/go@1.7.3
 jobs:
   pre-test:
-    resource_class: ewsaxyfkcp5g9tbybh5unx/k8stest
+    resource_class: ewsaxyfkcp5g9tbybh5unx/test
     executor: tfsec/default
     steps:
       - checkout
       - tfsec/scan:
           directory: ./infrastructure
   post-test:
-    resource_class: ewsaxyfkcp5g9tbybh5unx/k8stest
+    resource_class: ewsaxyfkcp5g9tbybh5unx/test
     executor:
       name: go/default
       tag: '1.18'

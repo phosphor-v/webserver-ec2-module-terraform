@@ -1,6 +1,0 @@
-agent:
-  ssh:
-    enabled: "true"
-  resourceClasses:
-    namespace/my-rc:
-      token: ewsaxyfkcp5g9tbybh5unx/k8stest
