@@ -1,30 +1,19 @@
+
 version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/base:current
+    resource_class: ewsaxyfkcp5g9tbybh5unx/k8stest
+    steps:
+      - run: echo "Hi I'm on a Container Runner!"
+
 
 executors:
   terraform-executor:
     docker:
       - image: hashicorp/terraform:latest
 
-jobs:
-  tfsec:
-    docker:
-      - image: aquasec/tfsec
-    steps:
-      - checkout
-      - run:
-          name: Run tfsec
-          command: tfsec .
-
-  apply_terraform:
-    docker:
-      - image: hashicorp/terraform:latest
-    steps:
-      - checkout
-      - run:
-          name: Apply Terraform
-          command: |
-            terraform init
-            terraform apply -auto-approve
 
   infrastructure_tests:
     docker:
@@ -33,14 +22,16 @@ jobs:
       - checkout
       - run:
           name: Run Infrastructure Tests
-          command: go test -v ./terratest/test
+          command: go test ./terratest/test/main.go
 
 workflows:
   version: 2
+  build-workflow:
+    jobs:
+      - build
   test_and_deploy:
     jobs:
       - tfsec
-      - apply_terraform
       - infrastructure_tests
 
 
