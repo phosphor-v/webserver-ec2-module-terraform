@@ -28,6 +28,4 @@ workflows:
   test-deployment:
     jobs:
       - pre-test
-      - post-test:
-          requires:
-            - pre-test
+      - post-test
