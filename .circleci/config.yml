@@ -30,4 +30,4 @@ workflows:
       - pre-test
       - post-test:
           requires:
-            - pre-tests
+            - pre-test
