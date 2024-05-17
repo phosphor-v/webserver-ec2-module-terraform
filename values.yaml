@@ -1,4 +1,4 @@
 agent:
   resourceClasses:
     namespace/my-rc:
-      token: xxx
+      token: a729952a6a98bd5604c1a2654b34bb6911a253accc66cd07d6da2b3a0d57b7fb367f53853f19a009
