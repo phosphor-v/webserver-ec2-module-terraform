@@ -33,6 +33,7 @@ jobs:
               && go mod tidy \
               && go test -v
 
+
 workflows:
   version: 2
   test-deployment:
