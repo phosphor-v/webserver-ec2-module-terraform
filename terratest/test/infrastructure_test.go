@@ -10,7 +10,7 @@ func TestTerraformModule(t *testing.T) {
     t.Parallel()
 
     opts := &terraform.Options{
-        TerraformDir: "../infra-module",
+        TerraformDir: "/home/circleci/project/terratest/infra-module",
         TerraformBinary : "terragrunt",
     }
 
