@@ -23,6 +23,7 @@ jobs:
       - run: cp terragrunt_linux_amd64 terragrunt
       - run: chmod u+x terragrunt
       - run: sudo mv terragrunt /usr/local/bin/terragrunt
+
       - run:
           name: terratest
           command: |
