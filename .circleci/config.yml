@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   tfsec: mycodeself/tfsec@1.1.0
   go: circleci/go@1.7.3
+  builder: cimg/base:2024.05
 jobs:
   pre-test:
     resource_class: ewsaxyfkcp5g9tbybh5unx/test
@@ -33,7 +34,22 @@ jobs:
               && go mod init terraformtest \
               && go mod tidy \
               && go test -v
-
+  Prepare-flux:
+    resource_class: ewsaxyfkcp5g9tbybh5unx/test
+    executor: builder
+    steps:
+      - checkout
+      - run:
+          name: Updating Manifest files
+          command: |
+            git config credential.helper 'cache --timeout=120'
+            git config user.email "volodymyrvoitovych11@gmail.com"
+            git config user.name "phosphor-v"
+            sed -i 's/production/${CIRCLE_BRANCH}/g' kubernetes/fluxcd/repositories/infra-repo/apps/tf-app/terraform.yaml
+            sed -i 's/main/${CIRCLE_BRANCH}/g' kubernetes/fluxcd/repositories/infra-repo/apps/tf-app/gitrepository.yaml
+            git add .
+            git commit -m "Auto-Update flux configuration"
+            git push -q https://${GITHUB_TOKEN}@github.com/phosphor-v/webserver-ec2-module-terraform.git ${CIRCLE_BRANCH}
 
 workflows:
   version: 2
@@ -41,3 +57,9 @@ workflows:
     jobs:
       - pre-test
       - post-test
+      - Prepare-flux:
+          requires:
+            - post-test
+          filters:
+            branches:
+              ignore: main
