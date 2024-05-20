@@ -6,12 +6,12 @@ metadata:
 spec:
   vars:
   - name: env
-    value: production
+    value: ${CIRCLE_BRANCH}
   backendConfig:
     customConfiguration: |
       backend "s3" {
         bucket                      = "phosphor-tfstates"
-        key                         = "production/terraform.tfstate"
+        key                         = "${CIRCLE_BRANCH}/terraform.tfstate"
         region                      = "us-east-1"
       }
   backendConfigsFrom:
