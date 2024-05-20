@@ -4,6 +4,20 @@ metadata:
   name: tf-app
   namespace: flux-system
 spec:
+  backendConfig:
+    customConfiguration: |
+      backend "s3" {
+        bucket                      = "phosphor-tfstates"
+        key                         = "dev/terraform.tfstate"
+        region                      = "us-east-1"
+      }
+  backendConfigsFrom:
+    - kind: Secret
+      name: terraform-s3-backend
+      keys:
+        - access_key
+        - secret_key
+      optional: false
   interval: 1m0s
   path: ./infrastructure
   sourceRef:
