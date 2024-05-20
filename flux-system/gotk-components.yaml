@@ -5430,7 +5430,7 @@ spec:
                               "test".
                               https://datatracker.ietf.org/doc/html/rfc6902#section-4
                             enum:
-                            - test
+                            - tf-app
                             - remove
                             - add
                             - replace
@@ -6046,7 +6046,7 @@ spec:
                               "test".
                               https://datatracker.ietf.org/doc/html/rfc6902#section-4
                             enum:
-                            - test
+                            - tf-app
                             - remove
                             - add
                             - replace
@@ -7152,7 +7152,7 @@ spec:
                 minLength: 1
                 type: string
               test:
-                description: Test holds the configuration for Helm test actions for
+                description: Test holds the configuration for Helm tf-app actions for
                   this HelmRelease.
                 properties:
                   enable:
@@ -7165,14 +7165,14 @@ spec:
                       running.
                     items:
                       description: Filter holds the configuration for individual Helm
-                        test filters.
+                        tf-app filters.
                       properties:
                         exclude:
-                          description: Exclude specifies whether the named test should
+                          description: Exclude specifies whether the named tf-app should
                             be excluded.
                           type: boolean
                         name:
-                          description: Name is the name of the test.
+                          description: Name is the name of the tf-app.
                           maxLength: 253
                           minLength: 1
                           type: string
@@ -7554,17 +7554,17 @@ spec:
                           to be run by the controller.
                         properties:
                           lastCompleted:
-                            description: LastCompleted is the time the test hook last
+                            description: LastCompleted is the time the tf-app hook last
                               completed.
                             format: date-time
                             type: string
                           lastStarted:
-                            description: LastStarted is the time the test hook was
+                            description: LastStarted is the time the tf-app hook was
                               last started.
                             format: date-time
                             type: string
                           phase:
-                            description: Phase the test hook was observed to be in.
+                            description: Phase the tf-app hook was observed to be in.
                             type: string
                         type: object
                       description: |-
@@ -8281,7 +8281,7 @@ spec:
                                         "test".
                                         https://datatracker.ietf.org/doc/html/rfc6902#section-4
                                       enum:
-                                      - test
+                                      - tf-app
                                       - remove
                                       - add
                                       - replace
@@ -8430,7 +8430,7 @@ spec:
                 minLength: 1
                 type: string
               test:
-                description: Test holds the configuration for Helm test actions for
+                description: Test holds the configuration for Helm tf-app actions for
                   this HelmRelease.
                 properties:
                   enable:
@@ -8814,17 +8814,17 @@ spec:
                           to be run by the controller.
                         properties:
                           lastCompleted:
-                            description: LastCompleted is the time the test hook last
+                            description: LastCompleted is the time the tf-app hook last
                               completed.
                             format: date-time
                             type: string
                           lastStarted:
-                            description: LastStarted is the time the test hook was
+                            description: LastStarted is the time the tf-app hook was
                               last started.
                             format: date-time
                             type: string
                           phase:
-                            description: Phase the test hook was observed to be in.
+                            description: Phase the tf-app hook was observed to be in.
                             type: string
                         type: object
                       description: |-
@@ -9558,7 +9558,7 @@ spec:
                                         "test".
                                         https://datatracker.ietf.org/doc/html/rfc6902#section-4
                                       enum:
-                                      - test
+                                      - tf-app
                                       - remove
                                       - add
                                       - replace
@@ -9710,7 +9710,7 @@ spec:
                 minLength: 1
                 type: string
               test:
-                description: Test holds the configuration for Helm test actions for
+                description: Test holds the configuration for Helm tf-app actions for
                   this HelmRelease.
                 properties:
                   enable:
@@ -9723,14 +9723,14 @@ spec:
                       running.
                     items:
                       description: Filter holds the configuration for individual Helm
-                        test filters.
+                        tf-app filters.
                       properties:
                         exclude:
-                          description: Exclude specifies whether the named test should
+                          description: Exclude specifies whether the named tf-app should
                             be excluded.
                           type: boolean
                         name:
-                          description: Name is the name of the test.
+                          description: Name is the name of the tf-app.
                           maxLength: 253
                           minLength: 1
                           type: string
@@ -10112,17 +10112,17 @@ spec:
                           to be run by the controller.
                         properties:
                           lastCompleted:
-                            description: LastCompleted is the time the test hook last
+                            description: LastCompleted is the time the tf-app hook last
                               completed.
                             format: date-time
                             type: string
                           lastStarted:
-                            description: LastStarted is the time the test hook was
+                            description: LastStarted is the time the tf-app hook was
                               last started.
                             format: date-time
                             type: string
                           phase:
-                            description: Phase the test hook was observed to be in.
+                            description: Phase the tf-app hook was observed to be in.
                             type: string
                         type: object
                       description: |-

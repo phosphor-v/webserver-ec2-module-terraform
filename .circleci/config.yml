@@ -4,7 +4,7 @@ orbs:
   go: circleci/go@1.7.3
 jobs:
   pre-test:
-    resource_class: ewsaxyfkcp5g9tbybh5unx/test
+    resource_class: ewsaxyfkcp5g9tbybh5unx/tf-app
     executor: tfsec/default
     steps:
       - checkout
@@ -13,7 +13,7 @@ jobs:
           exclude-checks: 'aws-ec2-require-vpc-flow-logs-for-all-vpcs,aws-ec2-enable-at-rest-encryption,aws-ec2-enforce-http-token-imds,aws-ec2-no-public-egress-sgr,aws-ec2-no-public-ingress-sgr,aws-ec2-add-description-to-security-group-rule'
 
   post-test:
-    resource_class: ewsaxyfkcp5g9tbybh5unx/test
+    resource_class: ewsaxyfkcp5g9tbybh5unx/tf-app
     executor:
       name: go/default
       tag: '1.19.2'
@@ -33,33 +33,10 @@ jobs:
               && go mod init terraformtest \
               && go mod tidy \
               && go test -v
-  Prepare-flux:
-    resource_class: ewsaxyfkcp5g9tbybh5unx/test
-    docker:
-      - image: cimg/base:2024.05
-    steps:
-      - checkout
-      - run:
-          name: Updating Manifest files
-          command: |
-            git config credential.helper 'cache --timeout=120'
-            git config user.email "volodymyrvoitovych11@gmail.com"
-            git config user.name "phosphor-v"
-            sed -i 's/production/$CIRCLE_BRANCH/g' kubernetes/fluxcd/repositories/infra-repo/apps/tf-app/terraform.yaml
-            sed -i 's/main/$CIRCLE_BRANCH/g' kubernetes/fluxcd/repositories/infra-repo/apps/tf-app/gitrepository.yaml
-            git add .
-            git commit -m "[ci skip] Auto-Update flux configuration"
-            git push -q https://${GITHUB_TOKEN}@github.com/phosphor-v/webserver-ec2-module-terraform.git $CIRCLE_BRANCH
 
 workflows:
   version: 2
   test-deployment:
     jobs:
-      - pre-test
-      - post-test
-      - Prepare-flux:
-          requires:
-            - post-test
-          filters:
-            branches:
-              ignore: main
+      - pre-tf-app
+      - post-tf-app

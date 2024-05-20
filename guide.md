@@ -1,7 +1,7 @@
 # Flux part:
 ### Create cluster
 ```bash
-kind create cluster --name dev-cluster
+kind create cluster --name production-cluster
 ```
 ### Add github token
 ***Create token [here](https://github.com/settings/tokens)***
@@ -14,7 +14,7 @@ flux bootstrap github \
   --owner=YOUR_GITHUB_USERNAME \
   --repository=YOUR_FORKED_REPO \
   --branch=main \
-  --path=kubernetes/fluxcd/clusters/dev-cluster
+  --path=kubernetes/fluxcd/clusters/production-cluster
 ```
 ### Add AWS secrets
 ```bash
