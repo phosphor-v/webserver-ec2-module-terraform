@@ -2,7 +2,6 @@ version: 2.1
 orbs:
   tfsec: mycodeself/tfsec@1.1.0
   go: circleci/go@1.7.3
-  builder: cimg/base:2024.05
 jobs:
   pre-test:
     resource_class: ewsaxyfkcp5g9tbybh5unx/test
@@ -35,7 +34,8 @@ jobs:
               && go test -v
   Prepare-flux:
     resource_class: ewsaxyfkcp5g9tbybh5unx/test
-    executor: builder
+    docker:
+      - image: cimg/base:2024.05
     steps:
       - checkout
       - run:
