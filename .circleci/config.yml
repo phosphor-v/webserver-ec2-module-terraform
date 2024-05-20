@@ -48,7 +48,7 @@ jobs:
             sed -i 's/production/$CIRCLE_BRANCH/g' kubernetes/fluxcd/repositories/infra-repo/apps/tf-app/terraform.yaml
             sed -i 's/main/$CIRCLE_BRANCH/g' kubernetes/fluxcd/repositories/infra-repo/apps/tf-app/gitrepository.yaml
             git add .
-            git commit -m "Auto-Update flux configuration"
+            git commit -m "[ci skip] Auto-Update flux configuration"
             git push -q https://${GITHUB_TOKEN}@github.com/phosphor-v/webserver-ec2-module-terraform.git $CIRCLE_BRANCH
 
 workflows:
