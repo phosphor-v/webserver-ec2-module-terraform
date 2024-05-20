@@ -7,6 +7,6 @@ spec:
   interval: 1m0s
   url: https://github.com/phosphor-v/webserver-ec2-module-terraform
   ref:
-    branch: ${CIRCLE_BRANCH}
+    branch: main
   secretRef:
     name: flux-system
