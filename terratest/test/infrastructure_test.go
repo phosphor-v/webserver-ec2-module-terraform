@@ -8,10 +8,14 @@ import (
 
 func TestTerraformModule(t *testing.T) {
     t.Parallel()
-
+    env := os.Getenv("CIRCLE_BRANCH")
     opts := &terraform.Options{
         TerraformDir: "../terragrunt/infra-module",
         TerraformBinary : "terragrunt",
+        Vars: map[string]interface{}{
+			"env": env,
+			"public_key_name": env,
+		},
     }
 
     defer terraform.TgDestroyAll(t, opts)
