@@ -7,6 +7,8 @@ spec:
   vars:
   - name: env
     value: stag
+  - name: public_key_name
+    value: stag-key
   backendConfig:
     customConfiguration: |
       backend "s3" {
