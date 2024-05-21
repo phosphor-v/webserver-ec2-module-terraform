@@ -35,7 +35,6 @@ jobs:
               && go test -v
   Create-flux-env:
     resource_class: ewsaxyfkcp5g9tbybh5unx/test
-    executor: builder
     docker:
       - image: cimg/base:2024.05
     steps:
