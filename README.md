@@ -90,6 +90,14 @@ git push origin test
 ```
 
 ## Results
-After running terratest, pipeline will create new flux environment configuration for this branch and push it to `dev` branch.
+Terratest configured to run tests with branch name as variable.
+
+
+After running terratest, pipeline will create new flux environment configuration for this branch and push it to `dev` branch. Check for existing environment is also included to prevent errors.
+
 
 Fluxcd will automatically add it to cluster and create tf resources.
+
+### Some pictures of deployment:
+![image](https://github.com/phosphor-v/webserver-ec2-module-terraform/assets/113942255/bcc54d91-0815-4cc9-bee9-634195ec6b2d)
+![image](https://github.com/phosphor-v/webserver-ec2-module-terraform/assets/113942255/e92564d3-7b19-4143-8efe-d684d9414e3b)
